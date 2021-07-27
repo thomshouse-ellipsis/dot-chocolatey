@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Only run if we're in WSL2
+if [[ "$(uname -rs)" =~ -WSL2$ ]]; then
+    # Look for choco.exe and add to $PATH if it's not already
+    if [ ! "$(command -v choco.exe)" ]; then
+        for drive in /mnt/[[:alnum:]]; do
+            if [ -x "$drive/ProgramData/chocolatey/bin/choco.exe" ]; then
+                PATH="$drive/ProgramData/chocolatey/bin:$PATH"
+                break
+            fi
+        done
+    fi
+    if [ "$(command -v choco.exe)" ]; then
+        wudo "$(command -v choco.exe) $@"
+    else
+        echo "ERROR: Cannot find choco.exe."
+    fi
+fi
