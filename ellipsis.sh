@@ -2,7 +2,7 @@
 
 pkg.install() {
     # Only install if we're in WSL2
-    if [[ "$(uname -rs)" =~ -WSL2$ ]]; then
+    if [ "$(os.platform)" = "wsl2" ]; then
         # Look for choco.exe and add to $PATH if it's not already
         if ! utils.cmd_exists choco.exe; then
             for drive in /mnt/[[:alnum:]]; do
