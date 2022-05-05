@@ -13,9 +13,9 @@ pkg.install() {
             done
         fi
 
-        # We need wudo from the wsl-tools package in order to install
+        # We need wudo from the wsl-utils package in order to install
         if ! utils.cmd_exists wudo; then
-            $ELLIPSIS_PATH/bin/ellipsis install thomshouse-ellipsis/wsl-tools
+            $ELLIPSIS_PATH/bin/ellipsis install thomshouse-ellipsis/wsl-utils
         fi
 
         # Install Chocolatey if it's not found on the path
